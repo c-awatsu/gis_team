@@ -1,4 +1,4 @@
-package leaflet_with_Wicket_handson;
+package page;
 
 import java.lang.management.ManagementFactory;
 

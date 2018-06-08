@@ -1,4 +1,4 @@
-package leaflet_with_Wicket_handson;
+package page;
 
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
