@@ -1,7 +1,10 @@
 package page;
 
+import de.agilecoders.wicket.webjars.WicketWebjars;
+import de.agilecoders.wicket.webjars.settings.WebjarsSettings;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
+import org.wicketstuff.htmlcompressor.HtmlCompressingMarkupFactory;
 
 /**
  * Application object for your web application.
@@ -17,7 +20,7 @@ public class WicketApplication extends WebApplication
 	@Override
 	public Class<? extends WebPage> getHomePage()
 	{
-		return HomePage.class;
+		return MapPage.class;
 	}
 
 	/**
@@ -29,5 +32,18 @@ public class WicketApplication extends WebApplication
 		super.init();
 
 		// add your configuration here
+
+		// サーバ・クライアント間のリクエスト・レスポンスの文字エンコード
+		getRequestCycleSettings().setResponseRequestEncoding("UTF-8");
+		// Wicketに取り込まれるHTMLファイルのエンコード
+		getMarkupSettings().setDefaultMarkupEncoding("UTF-8");
+
+		if (usesDeploymentConfig()) {
+			getMarkupSettings().setMarkupFactory(new HtmlCompressingMarkupFactory());
+		}
+
+		getDebugSettings().setAjaxDebugModeEnabled(false);
+
+		WicketWebjars.install(this, new WebjarsSettings());
 	}
 }
