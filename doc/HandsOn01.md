@@ -64,4 +64,4 @@ function drawMap() {
 ```
 
 **実行結果**
-![地図]()
+![地図](https://github.com/c-awatsu/gis_team/blob/master/doc/HandsOn01.jpg)
