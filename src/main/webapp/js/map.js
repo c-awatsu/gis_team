@@ -10,6 +10,10 @@ function drawMap() {
         attribution: '© <a href="http://osm.org/copyright">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
         maxZoom: 19
     });
-
     tileLayer.addTo(map);
+    setMarker();
+}
+
+function setMarker(){
+    marker = L.marker([staticLat, staticLon], {}).addTo(map).bindPopup('吹き出しが表示されます');
 }
