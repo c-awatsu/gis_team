@@ -1,7 +1,8 @@
 ### 1.Leafletで地図を表示してみる
+
 `java/page`パッケージに以下のファイルを作る 
 
-MapPage.html
+HomePage.html
 ```html
 <!DOCTYPE  html>
 <html xmlns:wicket="http:/wicket.apache.org">
@@ -16,7 +17,7 @@ MapPage.html
 
 ```
 
-MapPage.java
+HomePage.java
 ```java
 package page;
 
@@ -40,4 +41,24 @@ public class MapPage extends WebPage {
     }
 }
 
+```
+
+`webapp/js`パッケージを作成し以下のファイルを作る
+
+```javascript
+var map;
+var tileLayer;
+var staticLat = 42.828816;
+var staticLon = 141.650705;
+
+function drawMap() {
+    map = L.map('map').setView([staticLat, staticLon], 13);
+
+    tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© <a href="http://osm.org/copyright">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+        maxZoom: 19
+    });
+
+    tileLayer.addTo(map);
+}
 ```
