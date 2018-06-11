@@ -15,6 +15,7 @@ function drawMap() {
 } 
 
 function setMarker(){
+    //第1引数に座標の配列, 第2引数にオプションの設定(markerの色,形など)
     marker = L.marker([staticLat, staticLon], {}).addTo(map).bindPopup('吹き出しが表示されます');
 }
 ```
