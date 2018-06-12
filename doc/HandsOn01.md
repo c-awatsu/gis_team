@@ -71,4 +71,4 @@ function drawMap() {
 **実行結果**
 ![地図](./HandsOn01.jpg)
 
-[ハンズオン4へ](./HandsOn04.md)
+[ハンズオン2へ](./HandsOn02.md)
