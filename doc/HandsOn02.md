@@ -10,8 +10,17 @@ var staticLat = 42.828816;
 var staticLon = 141.650705;
 
 function drawMap() {
-    /*残りは変更なしで下記のみ追加*/
+    map = L.map('map').setView([staticLat, staticLon], 13);
+
+    tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© <a href="http://osm.org/copyright">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+        maxZoom: 19
+    });
+    tileLayer.addTo(map);
+    
+    //追加
     setMarker();
+
 } 
 
 function setMarker(){
@@ -21,4 +30,6 @@ function setMarker(){
 ```
 
 **実行結果**
-![地図](https://github.com/c-awatsu/gis_team/blob/master/doc/HandsOn02.jpg)
+![地図](./HandsOn02.jpg)
+
+[ハンズオン3へ](./HandsOn03.md)

@@ -3,7 +3,7 @@ var tileLayer;
 var staticLat = 42.828816;
 var staticLon = 141.650705;
 
-function drawMap() {
+function drawMap(hukidasi) {
     map = L.map('map').setView([staticLat, staticLon], 13);
 
     tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -11,9 +11,9 @@ function drawMap() {
         maxZoom: 19
     });
     tileLayer.addTo(map);
-    setMarker();
+    setMarker(hukidasi);
 }
 
-function setMarker(){
-    marker = L.marker([staticLat, staticLon], {}).addTo(map).bindPopup('吹き出しが表示されます');
+function setMarker(hukidasi){
+    L.marker([staticLat, staticLon], {}).addTo(map).bindPopup(hukidasi);
 }

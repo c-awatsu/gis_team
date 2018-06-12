@@ -39,7 +39,7 @@ public class MapPage extends WebPage {
         response.render(CssHeaderItem.forReference(new WebjarsCssResourceReference("./leaflet/current/dist/leaflet.css")));
         //作成したjsファイルの読み込み
         response.render(JavaScriptHeaderItem.forUrl("./js/map.js"));
-        //ページ表示時に
+        //ページ表示時にjavascriptの関数を実行する
         response.render(OnDomReadyHeaderItem.forScript("drawMap();"));
     }
 }
@@ -69,6 +69,6 @@ function drawMap() {
 ```
 
 **実行結果**
-![地図](https://github.com/c-awatsu/gis_team/blob/master/doc/HandsOn01.jpg)
+![地図](./HandsOn01.jpg)
 
-[ハンズオン2へ](./HandsOn02.md)
+[ハンズオン4へ](./HandsOn04.md)
