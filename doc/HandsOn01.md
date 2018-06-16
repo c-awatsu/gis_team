@@ -11,7 +11,7 @@ HomePage.html
     <title>MapPage</title>
 </head>
 <body>
-    <div style="width: 600px;height: 600px;" id="map"></div>
+    <div style="width: 1400px;height: 700px;" id="map"></div>
 </body>
 </html>
 
@@ -29,7 +29,7 @@ import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.markup.html.WebPage;
 
-public class MapPage extends WebPage {
+public class HomePage extends WebPage {
     @Override
     public void renderHead(IHeaderResponse response) {
         super.renderHead(response);
