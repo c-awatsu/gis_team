@@ -58,4 +58,4 @@ function setMarker(hukidasi){
 **実行結果**
 ![地図](HandsOn03.jpg)
 
-[ハンズオン4へ](HandsOn04.md)
+[ハンズオン4へ](./HandsOn04.md)

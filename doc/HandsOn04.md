@@ -92,4 +92,4 @@ function setMarker(hukidasi){
 
 ![ボタン押した後](HandsOn04-2.jpg)
 
-[ハンズオン5へ](HandsOn05.md)
+[ハンズオン5へ](./HandsOn05.md)

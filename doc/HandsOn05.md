@@ -97,4 +97,4 @@ function deleteMarker(){
 **実行結果**
 ![地図](HandsOn05.gif)
 
-[ハンズオン6へ](HandsOn06.md)
+[ハンズオン6へ](./HandsOn06.md)
