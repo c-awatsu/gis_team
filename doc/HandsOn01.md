@@ -4,7 +4,7 @@
 
 HomePage.html
 ```html
-<!DOCTYPE  html>
+<!DOCTYPE html>
 <html xmlns:wicket="http:/wicket.apache.org">
 <head>
     <meta charset="UTF-8"/>
@@ -69,6 +69,6 @@ function drawMap() {
 ```
 
 **実行結果**
-![地図](./HandsOn01.jpg)
+![地図](HandsOn01.jpg)
 
-[ハンズオン2へ](./HandsOn02.md)
+[ハンズオン2へ](HandsOn02.md)

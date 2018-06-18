@@ -1,8 +1,6 @@
 package page;
 
-import answer.HandsOn01;
-import answer.HandsOn02;
-import answer.HandsOn03;
+import answer.*;
 import de.agilecoders.wicket.webjars.WicketWebjars;
 import de.agilecoders.wicket.webjars.settings.WebjarsSettings;
 import org.apache.wicket.markup.html.WebPage;
@@ -21,7 +19,7 @@ public class WicketApplication extends WebApplication {
      */
     @Override
     public Class<? extends WebPage> getHomePage() {
-        return HomePage.class;
+        return HandsOn05.class;
     }
 
     /**
