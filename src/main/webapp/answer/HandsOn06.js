@@ -1,6 +1,8 @@
 var map;
 var tileLayer;
 var marker;
+//追加
+var markers = [];
 var staticLat = 42.828816;
 var staticLon = 141.650705;
 
@@ -18,7 +20,9 @@ function drawMap() {
 function setMarker(hukidasi){
     for(var i=0;i<5;i++){
         marker = L.marker([staticLat+(i/150), staticLon+(i/150)], {}).addTo(map).bindPopup(hukidasi);
+        markers.push(marker);
     }
+
 }
 
 function deleteMarker(){
