@@ -1,4 +1,7 @@
-## 6.マーカーを複数設置してみる
+## マーカーを全て削除する
+
+HandsOn06の状態で「マーカーを削除するボタン」を押すと一番最後に表示されたマーカー(一番右上のマーカー)のみ削除されるはずです。  
+全てのマーカーを削除するためには少し変更が必要になります。
 
 `webapp/js`に作成したmap.jsを以下のように変更
 
@@ -6,7 +9,6 @@
 var map;
 var tileLayer;
 var marker;
-//追加
 var markers = [];
 var staticLat = 42.828816;
 var staticLon = 141.650705;
@@ -30,12 +32,13 @@ function setMarker(hukidasi){
 
 }
 
+
 function deleteMarker(){
-    map.removeLayer(marker);
+    //変更
+    for(var i=0;i<5;i++){
+        map.removeLayer(markers[i]);
+    }
 }
 ```
 
-**実行結果**
-![地図](./HandsOn06.gif)
-
-[ハンズオン7へ](./HandsOn07.md)
+[ハンズオン8へ](./HandsOn08.md)
