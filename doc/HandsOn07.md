@@ -41,4 +41,7 @@ function deleteMarker(){
 }
 ```
 
+**実行結果**
+![地図](./HandsOn07.gif)
+
 [ハンズオン8へ](./HandsOn08.md)
