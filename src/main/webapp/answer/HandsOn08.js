@@ -16,20 +16,19 @@ function drawMap() {
     //
 }
 
-function setMarker(hukidasi){
-    //追加
+function setMarker(hukidasi) {
     markers = [];
-    for(var i=0;i<5;i++){
-        marker = L.marker([staticLat+(i/150), staticLon+(i/150)], {}).addTo(map).bindPopup(hukidasi);
+    for (var i = 0; i < 5; i++) {
+        marker = L.marker([staticLat + (i / 150), staticLon + (i / 150)],
+            {
+
+            }).addTo(map).bindPopup(hukidasi);
         markers.push(marker);
     }
-
 }
 
-
-function deleteMarker(){
-    //変更
-    for(var i=0;i<5;i++){
+function deleteMarker() {
+    for (var i = 0; i < 5; i++) {
         map.removeLayer(markers[i]);
     }
 }

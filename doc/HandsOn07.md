@@ -25,6 +25,8 @@ function drawMap() {
 }
 
 function setMarker(hukidasi){
+    //追加
+    markers = [];
     for(var i=0;i<5;i++){
         marker = L.marker([staticLat+(i/150), staticLon+(i/150)], {}).addTo(map).bindPopup(hukidasi);
         markers.push(marker);
