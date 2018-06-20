@@ -1,6 +1,6 @@
-## マーカーのデザインを変えてみる
+## 8.マーカーのデザインを変えてみる
 
-civic-mapでは[Leaflet.ExtraMarkers](https://github.com/coryasilva/Leaflet.ExtraMarkers)という外部ライブラリを使っています
+civic-mapでは[Leaflet.ExtraMarkers](https://github.com/coryasilva/Leaflet.ExtraMarkers)という外部ライブラリを使ってマーカーに番号を振ったりデザインを変えたりしています
 
 
 `java/page`に作成したHomePage.javaを以下のように変更
@@ -18,9 +18,9 @@ import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.markup.html.WebPage;
 
-public class HandsOn08 extends WebPage {
+public class HomePage extends WebPage {
 
-    public HandsOn08(){
+    public HomePage(){
         add(new AjaxLink<Void>("addMarker") {
             @Override
             public void onClick(AjaxRequestTarget target) {
@@ -97,5 +97,10 @@ function deleteMarker() {
         map.removeLayer(markers[i]);
     }
 }
-
 ```
+**実行結果**
+
+![地図](./HandsOn08.jpg)
+
+[ハンズオン09へ]()
+

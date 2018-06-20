@@ -21,8 +21,14 @@ function setMarker(hukidasi) {
     for (var i = 0; i < 5; i++) {
         marker = L.marker([staticLat + (i / 150), staticLon + (i / 150)],
             {
-
-            }).addTo(map).bindPopup(hukidasi);
+                icon: L.ExtraMarkers.icon({
+                    icon: 'fa-number',
+                    shape: 'penta',
+                    prefix: 'fa',
+                    markerColor: 'green',
+                    number: i + 1,
+                })
+        }).addTo(map).bindPopup(hukidasi);
         markers.push(marker);
     }
 }
