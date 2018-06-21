@@ -102,5 +102,5 @@ function deleteMarker() {
 
 ![地図](./HandsOn08.jpg)
 
-[ハンズオン09へ]()
+[ハンズオン09へ](./HandsOn09.md)
 
