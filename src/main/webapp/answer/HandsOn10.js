@@ -1,9 +1,3 @@
-## 10.現在地を取得しその座標の場所にマーカーを表示する
-
-javascriptのGeolocationAPIというライブラリを使ってユーザーの現在地を取得します。  
-`webapp/js`に作成したmap.jsを以下のように変更
-
-```javascript
 var map;
 var tileLayer;
 var marker;
@@ -89,9 +83,3 @@ function setCurrentLocationMarker() {
         alert('位置情報が取得できません');
     });
 }
-```
-
-**実行結果**
-![地図](./HandsOn10.gif)  
-
-[ハンズオン11へ](./HandsOn11.md)
