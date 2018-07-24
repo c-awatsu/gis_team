@@ -6,4 +6,4 @@
 `java`パッケージ内に`repository`パッケージ、`service`パッケージ、`dao`パッケージを作成してください。  
 
 次に`resources`パッケージ内に`hikari.properties`ファイルを作成してください。  
-その後[hikari.properties](./../resources/hikari.properties)の中身を`hikari.properties`にコピペしてください。
+その後[hikari.properties](./../src/main/resources/hikari.properties)の中身を`hikari.properties`にコピペしてください。
