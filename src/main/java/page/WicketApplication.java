@@ -19,7 +19,7 @@ public class WicketApplication extends WebApplication {
      */
     @Override
     public Class<? extends WebPage> getHomePage() {
-        return HandsOn11.class;
+        return HandsOn12.class;
     }
 
     /**

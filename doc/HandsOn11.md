@@ -3,6 +3,10 @@
 Ajaxを活用してjavascriptからWicketに値を渡すことができます。
 今回は取得された現在地の座標をJava側に渡します。
 
+
+`webapp/js`に作成したmap.jsを以下のように変更
+
+
 ```javascript
 var map;
 var tileLayer;
@@ -92,6 +96,11 @@ function setCurrentLocationMarker() {
     });
 }
 ```
+<<<<<<< Updated upstream
+=======
+`java/page`に作成したHomePage.javaを以下のように変更
+
+>>>>>>> Stashed changes
 ```java
 import de.agilecoders.wicket.webjars.request.resource.WebjarsCssResourceReference;
 import de.agilecoders.wicket.webjars.request.resource.WebjarsJavaScriptResourceReference;
@@ -198,6 +207,11 @@ public class HandsOn11 extends WebPage {
 }
 ```
 
+<<<<<<< Updated upstream
+=======
+`java/page`に作成したHomePage.htmlを以下のように変更
+
+>>>>>>> Stashed changes
 ```html
 <!DOCTYPE  html>
 <html xmlns:wicket="http:/wicket.apache.org">
@@ -222,4 +236,4 @@ public class HandsOn11 extends WebPage {
 **実行結果**
 ![地図](./HandsOn11.gif)  
 
-[ハンズオン11へ](./HandsOn12.md)
+[ハンズオン12へ](./HandsOn12.md)

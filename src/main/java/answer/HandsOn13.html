@@ -2,16 +2,32 @@
 <html xmlns:wicket="http:/wicket.apache.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>HandsOn11</title>
+    <!-- 追加 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>HandsOn12</title>
 </head>
+<!-- 追加 -->
+<style>
+    body {
+        padding: 0;
+        margin: 0;
+    }
+
+    html, body {
+        height: 100%;
+        width: 100vw;
+    }
+
+    #map {
+        height: 85%;
+        width: 100vw;
+    }
+</style>
 <body>
-<div style="width: 1400px;height: 650px;" id="map"></div>
+<!-- 変更　styleを削除 -->
+<div id="map"></div>
 <button type="submit" style="font-size: 14px;" wicket:id="addMarker">押すとマーカーが出ます</button>
 <button type="submit" style="font-size: 14px;" wicket:id="deleteMarker">押すとマーカーが削除されます</button>
-<<<<<<< Updated upstream
-=======
-<!-- 追加 -->
->>>>>>> Stashed changes
 <div wicket:id="latLngWMC">
     座標&nbsp;<label wicket:id="latLng"></label>
 </div>
