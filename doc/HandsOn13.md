@@ -7,3 +7,7 @@
 
 次に`resources`パッケージ内に`hikari.properties`ファイルを作成してください。  
 その後[hikari.properties](/src/main/resources/hikari.properties)の中身を`hikari.properties`にコピペしてください。
+
+次に`repository`パッケージ内に`IDBCP`インターフェースと`DBCP`クラスを作成してください
+その後[IDBCP](/src/main/java/repository/IDBCP.java)と[DBCP](/src/main/java/repository/DBCP.java)の中身をそれぞれコピペしてください。
+
