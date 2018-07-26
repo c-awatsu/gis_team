@@ -216,5 +216,12 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# this branch settings
+WicketApplication.java
+src/main/java/Bean
+src/main/java/dao
+src/main/java/repository
+src/main/java/service
+src/main/resources/hikari.properties
 
 # End of https://www.gitignore.io/api/java,macos,maven,windows,eclipse,intellij+all
