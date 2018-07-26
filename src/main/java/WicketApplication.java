@@ -1,11 +1,9 @@
-package page;
-
-import answer.*;
 import de.agilecoders.wicket.webjars.WicketWebjars;
 import de.agilecoders.wicket.webjars.settings.WebjarsSettings;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.wicketstuff.htmlcompressor.HtmlCompressingMarkupFactory;
+import page.HomePage;
 
 /**
  * Application object for your web application.
@@ -19,7 +17,7 @@ public class WicketApplication extends WebApplication {
      */
     @Override
     public Class<? extends WebPage> getHomePage() {
-        return HandsOn12.class;
+        return HomePage.class;
     }
 
     /**
