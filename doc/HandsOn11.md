@@ -168,7 +168,7 @@ public class HandsOn11 extends WebPage {
         add(latLngWMC);
         //追加
         //座標を表示するLabel
-        latLngWMC.add(new Label("latLng", latLngModel));
+        latLngWMC.add(new Label(latlon, latLngModel));
 
         add(new AbstractDefaultAjaxBehavior() {
             private static final long serialVersionUID = -488243388522526746L;
@@ -225,7 +225,7 @@ public class HandsOn11 extends WebPage {
 <button type="submit" style="font-size: 14px;" wicket:id="deleteMarker">押すとマーカーが削除されます</button>
 <!-- 追加 -->
 <div wicket:id="latLngWMC">
-    座標&nbsp;<label wicket:id="latLng"></label>
+    座標&nbsp;<label wicket:id="latlon"></label>
 </div>
 
 </body>

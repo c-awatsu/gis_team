@@ -39,7 +39,7 @@ vh、vwという単位は[viewport](https://qiita.com/ryounagaoka/items/045b2808
 <button type="submit" style="font-size: 14px;" wicket:id="addMarker">押すとマーカーが出ます</button>
 <button type="submit" style="font-size: 14px;" wicket:id="deleteMarker">押すとマーカーが削除されます</button>
 <div wicket:id="latLngWMC">
-    座標&nbsp;<label wicket:id="latLng"></label>
+    座標&nbsp;<label wicket:id="latlon"></label>
 </div>
 
 </body>
@@ -50,4 +50,4 @@ vh、vwという単位は[viewport](https://qiita.com/ryounagaoka/items/045b2808
 **実行結果**
 ![地図](./HandsOn12.gif)
 
-[ハンズオン12へ](./HandsOn13.md)
+<!-- [ハンズオン13へ](./HandsOn13.md) -->
