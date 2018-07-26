@@ -217,7 +217,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # this branch settings
-WicketApplication.java
 src/main/java/Bean
 src/main/java/dao
 src/main/java/repository
