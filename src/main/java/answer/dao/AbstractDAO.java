@@ -1,8 +1,8 @@
-package dao;
+package answer.dao;
 
 import com.google.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
-import repository.IDBCP;
+import answer.repository.IDBCP;
 
 /**
  * すべてのDAOの親となるクラス

@@ -1,4 +1,4 @@
-package repository;
+package answer.repository;
 
 import com.google.inject.ImplementedBy;
 import org.sql2o.Sql2o;

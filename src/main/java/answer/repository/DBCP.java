@@ -1,4 +1,4 @@
-package repository;
+package answer.repository;
 
 import com.google.inject.Singleton;
 import com.zaxxer.hikari.HikariConfig;

@@ -1,4 +1,4 @@
-package Bean;
+package answer.Bean;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

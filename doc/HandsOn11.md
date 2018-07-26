@@ -207,11 +207,8 @@ public class HandsOn11 extends WebPage {
 }
 ```
 
-<<<<<<< Updated upstream
-=======
 `java/page`に作成したHomePage.htmlを以下のように変更
 
->>>>>>> Stashed changes
 ```html
 <!DOCTYPE  html>
 <html xmlns:wicket="http:/wicket.apache.org">
