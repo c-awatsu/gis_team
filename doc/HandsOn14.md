@@ -1,12 +1,9 @@
-## 11.javascriptからWicketに値を渡す
+## マーカーがある範囲内に収まっているか判定する
 
-Ajaxを活用してjavascriptからWicketに値を渡すことができます。
-今回は取得された現在地の座標をJava側に渡します。
+千歳市の範囲内に収まっているかを判定します。この処理は実際に道路管理課で実証実験をしたシステムでも行なっている処理です。
+[chitoseArea.json]()をダウンロードして`webapp/js`以下においてください。
 
-
-`webapp/js`に作成したmap.jsを以下のように変更
-
-
+次に、`webapp/js`以下のmap.jsを以下のように変更して下さい。
 ```javascript
 var map;
 var tileLayer;
@@ -14,6 +11,10 @@ var marker;
 var markers = [];
 var staticLat = 42.828816;
 var staticLon = 141.650705;
+//以下の3つを追加
+var isChitose;
+var checkBounds;
+var edgeRect;
 
 function drawMap() {
     map = L.map('map').setView([staticLat, staticLon], 13);
@@ -48,23 +49,25 @@ function setClickEvent() {
     map.on("click", function (e) {
         //クリックされた場所の座標を取得
         var latlng = e.latlng;
-        //その座標を元にマーカーを作成
-        marker = L.marker([latlng.lat, latlng.lng],
-            {
-                icon: L.ExtraMarkers.icon({
-                    icon: 'fa-number',
-                    shape: 'penta',
-                    prefix: 'fa',
-                    markerColor: 'green',
-                })
-            }).addTo(map);
-        markers.push(marker);
-        //追加
-        //javascriptとJavaでやり取りをするための関数(javascript側で関数の定義や処理は書かない)
-        //Java側で呼び出されて引数がそのままJavaに渡される
-        sendLatLon(latlng.lat,latlng.lng);
+        //変更
+        isChitoseLatlon(latlng);
+        if (isChitose) {
+            // その座標を元にマーカーを作成
+            marker = L.marker([latlng.lat, latlng.lng],
+                {
+                    icon: L.ExtraMarkers.icon({
+                        icon: 'fa-number',
+                        shape: 'penta',
+                        prefix: 'fa',
+                        markerColor: 'green',
+                    })
+                }).addTo(map);
+            markers.push(marker);
+            sendLatLon(latlng.lat, latlng.lng, "千歳市内");
+        } else {
+            sendLatLon(latlng.lat, latlng.lng, "千歳市外");
+        }
     });
-
 
 }
 
@@ -95,13 +98,35 @@ function setCurrentLocationMarker() {
         alert('位置情報が取得できません');
     });
 }
-```
-<<<<<<< Updated upstream
-=======
-`java/page`に作成したHomePage.javaを以下のように変更
 
->>>>>>> Stashed changes
+function setContributionMarker(contributionList) {
+    for (var i = 0; i < contributionList.length; i++) {
+        //Javaから渡されたBeanを引数で渡された場合は引数名.Beanでの変数名で変数を呼び出すことができる
+        marker = L.marker([contributionList[i].latlon.center.y, contributionList[i].latlon.center.x], {}).addTo(map).bindPopup(contributionList[i].postTime);
+        markers.push(marker);
+    }
+}
+//追加
+function isChitoseLatlon(latlng) {
+    $.ajax({
+        url: './../js/chitoseArea.json',
+        dataType: 'json',
+        async: false,
+        success: function (json) {
+            edgeRect = L.polyline(json.edgeLatlon);
+            checkBounds = edgeRect.getBounds();
+            isChitose = checkBounds.contains(latlng);
+        }
+    });
+}
+```
+
+次に、`java/HomePage.java`を以下のように変更してください
 ```java
+package answer;
+
+import answer.service.IContributionService;
+import com.google.inject.Inject;
 import de.agilecoders.wicket.webjars.request.resource.WebjarsCssResourceReference;
 import de.agilecoders.wicket.webjars.request.resource.WebjarsJavaScriptResourceReference;
 import lombok.val;
@@ -122,11 +147,13 @@ import org.apache.wicket.model.Model;
 
 import static org.apache.wicket.ajax.attributes.CallbackParameter.explicit;
 
-public class HandsOn11 extends WebPage {
+public class HandsOn14 extends WebPage {
+    private static final long serialVersionUID = 2947674758440633002L;
 
-    private static final long serialVersionUID = 5148374236998314569L;
+    @Inject
+    private IContributionService contributionService;
 
-    public HandsOn11(){
+    public HandsOn14(){
         IModel<String> latLngModel = new Model<>();
 
         add(new AjaxLink<Void>("addMarker") {
@@ -146,48 +173,38 @@ public class HandsOn11 extends WebPage {
                 target.appendJavaScript("deleteMarker();");
             }
         });
-        
-        //追加
-        //Java側でLabelなどのコンポーネントをAjaxで書き換えるときは, 書き換えたいコンポーネントを直接更新するのではなく,
-        //WMCなどを親コンポーネントとしておき, 子コンポーネントとして書き換えたいコンポーネントを親コンポーネントがaddする.
-        //親コンポーネントを更新の対象とすると, addされている子コンポーネントが全て更新されます
+
         WebMarkupContainer latLngWMC = new WebMarkupContainer("latLngWMC"){
 
             private static final long serialVersionUID = -2789836514770760188L;
 
-            //onInitializeメソッドはコンポーネントが描画されるタイミングで呼び出される
-            //なのでコンポーネントの初期状態を管理したいときに使う
-            //似たようなものとしてonConfigureメソッドがあり, コンポーネントが更新されたときに毎回呼び出される
             @Override
             protected void onInitialize() {
                 super.onInitialize();
-                //コンポーネントをAjaxで更新可能にする処理
                 setOutputMarkupId(true);
             }
         };
         add(latLngWMC);
-        //追加
-        //座標を表示するLabel
-        latLngWMC.add(new Label(latlon, latLngModel));
+        latLngWMC.add(new Label("latLng", latLngModel));
 
+        //変更 PARAMを追加
         add(new AbstractDefaultAjaxBehavior() {
             private static final long serialVersionUID = -488243388522526746L;
 
             @Override
             public void renderHead(Component component, IHeaderResponse response) {
                 super.renderHead(component, response);
-                //explicitに渡すパラメーター名は必ずPARAM_で始まる必要がある
-                val function = getCallbackFunction(explicit("PARAM_lat"),explicit("PARAM_lon"));
+                val function = getCallbackFunction(explicit("PARAM_lat"),explicit("PARAM_lon"),explicit("PARAM_isChitose"));
                 val js = "sendLatLon = " + function.toString();
                 response.render(OnDomReadyHeaderItem.forScript(js));
             }
 
             @Override
             protected void respond(AjaxRequestTarget target) {
-                //renderHeadメソッドで使ったパラメーター名を元に値を取り出す
                 val latitude = getRequest().getRequestParameters().getParameterValue("PARAM_lat").toDouble(0d);
                 val longitude = getRequest().getRequestParameters().getParameterValue("PARAM_lon").toDouble(0d);
-                latLngModel.setObject("lat:" + latitude + ", lon:" + longitude);
+                val description = getRequest().getRequestParameters().getParameterValue("PARAM_isChitose").toString("");
+                latLngModel.setObject("lat:" + latitude + ", lon:" + longitude + ", 場所:" + description);
                 target.add(latLngWMC);
             }
         });
@@ -201,36 +218,13 @@ public class HandsOn11 extends WebPage {
         response.render(CssHeaderItem.forReference(new WebjarsCssResourceReference("./leaflet/current/dist/leaflet.css")));
         response.render(JavaScriptHeaderItem.forUrl("./js/leaflet.extra-markers.min.js"));
         response.render(CssHeaderItem.forUrl("./css/leaflet.extra-markers.min.css"));
-        response.render(JavaScriptHeaderItem.forUrl("./answer/HandsOn11.js"));
+        response.render(JavaScriptHeaderItem.forUrl("./answer/HandsOn14.js"));
         response.render(OnDomReadyHeaderItem.forScript("drawMap();"));
+        //今回はクリックしてセットしたマーカーに対して千歳市内に収まっているかを判定したいので一旦コメントアウト
+        //response.render(OnDomReadyHeaderItem.forScript("setContributionMarker("+ JSON.encode(contributionService.selectContributionList()) +");"));
     }
 }
 ```
 
-`java/page`に作成したHomePage.htmlを以下のように変更
-
-```html
-<!DOCTYPE  html>
-<html xmlns:wicket="http:/wicket.apache.org">
-<head>
-    <meta charset="UTF-8"/>
-    <title>HandsOn11</title>
-</head>
-<body>
-<div style="width: 1400px;height: 650px;" id="map"></div>
-<button type="submit" style="font-size: 14px;" wicket:id="addMarker">押すとマーカーが出ます</button>
-<button type="submit" style="font-size: 14px;" wicket:id="deleteMarker">押すとマーカーが削除されます</button>
-<!-- 追加 -->
-<div wicket:id="latLngWMC">
-    座標&nbsp;<label wicket:id="latlon"></label>
-</div>
-
-</body>
-</html>
-
-```
-
 **実行結果**
-![地図](./HandsOn11.gif)  
-
-[ハンズオン12へ](./HandsOn12.md)
+![地図](./HandsOn14.gif)
