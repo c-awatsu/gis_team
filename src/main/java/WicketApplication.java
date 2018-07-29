@@ -1,8 +1,11 @@
-package page;
-
-import answer.*;
+import answer.HandsOn13;
+import answer.HandsOn14;
+import answer.repository.DBCP;
+import answer.repository.IDBCP;
+import com.google.inject.Module;
 import de.agilecoders.wicket.webjars.WicketWebjars;
 import de.agilecoders.wicket.webjars.settings.WebjarsSettings;
+import org.apache.wicket.guice.GuiceComponentInjector;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.wicketstuff.htmlcompressor.HtmlCompressingMarkupFactory;
@@ -19,7 +22,7 @@ public class WicketApplication extends WebApplication {
      */
     @Override
     public Class<? extends WebPage> getHomePage() {
-        return HandsOn12.class;
+        return HandsOn14.class;
     }
 
     /**
@@ -41,7 +44,24 @@ public class WicketApplication extends WebApplication {
         }
 
         getDebugSettings().setAjaxDebugModeEnabled(false);
+        initGuice();
 
         WicketWebjars.install(this, new WebjarsSettings());
+    }
+
+    /**
+     * Google Guiceを初期化する.
+     */
+    protected void initGuice() {
+        getComponentInstantiationListeners().add(new GuiceComponentInjector(this, getGuiceModule()));
+    }
+
+    /**
+     * @return injection module.
+     */
+    protected Module getGuiceModule() {
+        return binder -> {
+            binder.bind(IDBCP.class).to(DBCP.class).asEagerSingleton();
+        };
     }
 }

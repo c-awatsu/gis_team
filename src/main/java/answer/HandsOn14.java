@@ -22,13 +22,13 @@ import org.apache.wicket.model.Model;
 
 import static org.apache.wicket.ajax.attributes.CallbackParameter.explicit;
 
-public class HandsOn13 extends WebPage {
+public class HandsOn14 extends WebPage {
     private static final long serialVersionUID = 2947674758440633002L;
 
     @Inject
     private IContributionService contributionService;
 
-    public HandsOn13(){
+    public HandsOn14(){
         IModel<String> latLngModel = new Model<>();
 
         add(new AjaxLink<Void>("addMarker") {
@@ -68,7 +68,7 @@ public class HandsOn13 extends WebPage {
             @Override
             public void renderHead(Component component, IHeaderResponse response) {
                 super.renderHead(component, response);
-                val function = getCallbackFunction(explicit("PARAM_lat"),explicit("PARAM_lon"));
+                val function = getCallbackFunction(explicit("PARAM_lat"),explicit("PARAM_lon"),explicit("PARAM_isChitose"));
                 val js = "sendLatLon = " + function.toString();
                 response.render(OnDomReadyHeaderItem.forScript(js));
             }
@@ -77,7 +77,8 @@ public class HandsOn13 extends WebPage {
             protected void respond(AjaxRequestTarget target) {
                 val latitude = getRequest().getRequestParameters().getParameterValue("PARAM_lat").toDouble(0d);
                 val longitude = getRequest().getRequestParameters().getParameterValue("PARAM_lon").toDouble(0d);
-                latLngModel.setObject("lat:" + latitude + ", lon:" + longitude);
+                val description = getRequest().getRequestParameters().getParameterValue("PARAM_isChitose").toString("");
+                latLngModel.setObject("lat:" + latitude + ", lon:" + longitude + ", 場所:" + description);
                 target.add(latLngWMC);
             }
         });
@@ -91,8 +92,9 @@ public class HandsOn13 extends WebPage {
         response.render(CssHeaderItem.forReference(new WebjarsCssResourceReference("./leaflet/current/dist/leaflet.css")));
         response.render(JavaScriptHeaderItem.forUrl("./js/leaflet.extra-markers.min.js"));
         response.render(CssHeaderItem.forUrl("./css/leaflet.extra-markers.min.css"));
-        response.render(JavaScriptHeaderItem.forUrl("./answer/HandsOn13.js"));
+        response.render(JavaScriptHeaderItem.forUrl("./answer/HandsOn14.js"));
         response.render(OnDomReadyHeaderItem.forScript("drawMap();"));
-        response.render(OnDomReadyHeaderItem.forScript("setContributionMarker("+ JSON.encode(contributionService.selectContributionList()) +");"));
+        //今回はクリックしてセットしたマーカーに対して千歳市内に収まっているかを判定したいので一旦コメントアウト
+        //response.render(OnDomReadyHeaderItem.forScript("setContributionMarker("+ JSON.encode(contributionService.selectContributionList()) +");"));
     }
 }
