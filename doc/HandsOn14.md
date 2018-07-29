@@ -227,4 +227,4 @@ public class HandsOn14 extends WebPage {
 ```
 
 **実行結果**
-[!地図](./HandsOn14.gif)
+![地図](./HandsOn14.gif)

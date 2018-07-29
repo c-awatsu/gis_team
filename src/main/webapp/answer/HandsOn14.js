@@ -4,7 +4,8 @@ var marker;
 var markers = [];
 var staticLat = 42.828816;
 var staticLon = 141.650705;
-//以下の3つを追加
+//以下の4つを追加
+var edgeLatlon;
 var isChitose;
 var checkBounds;
 var edgeRect;
@@ -55,6 +56,7 @@ function setClickEvent() {
                     })
                 }).addTo(map);
             markers.push(marker);
+            console.log(latlng.lat,latlng.lng);
             sendLatLon(latlng.lat, latlng.lng, "千歳市内");
         } else {
             sendLatLon(latlng.lat, latlng.lng, "千歳市外");
@@ -98,18 +100,27 @@ function setContributionMarker(contributionList) {
         markers.push(marker);
     }
 }
+
 //追加
 function isChitoseLatlon(latlng) {
     //千歳の外周の座標が入ったjsonを読み込み
+    getChitoseEdgeJson();
+    //外周の形の多角形を作成
+    edgeRect = L.polyline(edgeLatlon);
+    //その多角形の面積を求める
+    checkBounds = edgeRect.getBounds();
+    //その範囲内にクリックした地点が入っているかを判定
+    isChitose = checkBounds.contains(latlng);
+
+}
+//追加
+function getChitoseEdgeJson() {
     $.ajax({
         url: './../js/chitoseArea.json',
         dataType: 'json',
         async: false,
-        success: function (json) {
-            edgeRect = L.polyline(json.edgeLatlon);
-            checkBounds = edgeRect.getBounds();
-            isChitose = checkBounds.contains(latlng);
+        success: function (json) {//読み込みがうまくいくとこの処理が走る
+            edgeLatlon = json.edgeLatlon;
         }
     });
-
 }

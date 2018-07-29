@@ -68,7 +68,7 @@ public class HandsOn14 extends WebPage {
             @Override
             public void renderHead(Component component, IHeaderResponse response) {
                 super.renderHead(component, response);
-                val function = getCallbackFunction(explicit("PARAM_lat"),explicit("PARAM_lon"),explicit("PARAM_isChitose"));
+                val function = getCallbackFunction(explicit("PARAM_lat"),explicit("PARAM_lon"),explicit("PARAM_INAREA"));
                 val js = "sendLatLon = " + function.toString();
                 response.render(OnDomReadyHeaderItem.forScript(js));
             }
@@ -77,7 +77,7 @@ public class HandsOn14 extends WebPage {
             protected void respond(AjaxRequestTarget target) {
                 val latitude = getRequest().getRequestParameters().getParameterValue("PARAM_lat").toDouble(0d);
                 val longitude = getRequest().getRequestParameters().getParameterValue("PARAM_lon").toDouble(0d);
-                val description = getRequest().getRequestParameters().getParameterValue("PARAM_isChitose").toString("");
+                val description = getRequest().getRequestParameters().getParameterValue("PARAM_INAREA").toString("");
                 latLngModel.setObject("lat:" + latitude + ", lon:" + longitude + ", 場所:" + description);
                 target.add(latLngWMC);
             }
