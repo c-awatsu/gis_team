@@ -96,11 +96,9 @@ function setCurrentLocationMarker() {
     });
 }
 ```
-<<<<<<< Updated upstream
-=======
+
 `java/page`に作成したHomePage.javaを以下のように変更
 
->>>>>>> Stashed changes
 ```java
 import de.agilecoders.wicket.webjars.request.resource.WebjarsCssResourceReference;
 import de.agilecoders.wicket.webjars.request.resource.WebjarsJavaScriptResourceReference;
