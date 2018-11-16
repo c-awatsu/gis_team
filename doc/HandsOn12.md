@@ -50,4 +50,4 @@ vh、vwという単位は[viewport](https://qiita.com/ryounagaoka/items/045b2808
 **実行結果**
 ![地図](./HandsOn12.gif)
 
-<!-- [ハンズオン13へ](./HandsOn13.md) -->
+![ハンズオン13へ](./HandsOn13.md)
